@@ -1,0 +1,94 @@
+//2 junctions and 2 lights
+const int red1Pin = A4;
+const int red2Pin = A3;
+
+//int i = 10;
+
+const int green1Pin = A2;
+const int green2Pin = A5;
+//int value1,value2=0
+
+
+
+void setup() //led init
+{
+  pinMode(red1Pin, OUTPUT);
+
+  pinMode(green1Pin, OUTPUT);
+  pinMode(red2Pin, OUTPUT);
+
+  pinMode(green2Pin, OUTPUT);
+
+  pinMode(6, INPUT);
+  pinMode(7, INPUT);
+  pinMode(4, INPUT);
+  pinMode(5, INPUT);
+
+  Serial.begin(9600); // start serial port at 9600 bps:
+}
+
+
+
+void loop()
+{
+
+  int value1 = digitalRead(6);
+  int value2 = digitalRead(7);
+  int value3 = digitalRead(4);
+  int value4 = digitalRead(5);
+  if (value1 ==  0 && value2 == 0 && value3 ==  1 && value4 == 1)
+  {
+        digitalWrite(green2Pin, LOW); //turn on a red led
+    digitalWrite(red1Pin, LOW);
+    digitalWrite(green1Pin, HIGH); //turn on a red led
+    digitalWrite(red2Pin, HIGH);
+
+    delay(3000);
+
+//    delay(500);
+  }
+
+  if ( value2 == 1 && value3 ==  0 && value4 == 0)
+  {
+      digitalWrite(green1Pin, LOW);
+    digitalWrite(red2Pin, LOW);
+    digitalWrite(green2Pin, HIGH);
+    digitalWrite(red1Pin, HIGH);
+
+    delay(3000);
+
+//    delay(500);
+  }
+
+  if (value1 ==  0 && value2 == 0 && value4 == 0)
+
+  {
+      digitalWrite(green2Pin, LOW); //turn on a red led
+    digitalWrite(red1Pin, LOW);
+    digitalWrite(green1Pin, HIGH); //turn on a red led
+    digitalWrite(red2Pin, HIGH);
+
+    delay(6000);
+    digitalWrite(green1Pin, LOW); //turn on a red led
+    digitalWrite(red2Pin, LOW);
+    delay(500);
+    digitalWrite(green2Pin, HIGH);
+    digitalWrite(red1Pin, HIGH);
+
+    delay(3000);
+    digitalWrite(green2Pin, LOW);
+    digitalWrite(red1Pin, LOW);
+  }
+  else if(value2==1 && value4==1) {
+     digitalWrite(red2Pin, LOW);
+      digitalWrite(red1Pin, LOW);
+    digitalWrite(green1Pin, HIGH);
+    delay(1000);
+    digitalWrite(green1Pin, LOW);
+    digitalWrite(green2Pin, HIGH);
+    delay(1000);
+    digitalWrite(green2Pin, LOW);
+  }
+
+
+}
